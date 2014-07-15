@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ![Boilerplate](https://github.com/backbone-boilerplate/backbone-boilerplate/raw/assets/header.png)
 
 [![Build Status](https://travis-ci.org/backbone-boilerplate/backbone-boilerplate.png?branch=master)](https://travis-ci.org/backbone-boilerplate/backbone-boilerplate) [![Coverage Status](https://coveralls.io/repos/backbone-boilerplate/backbone-boilerplate/badge.png)](https://coveralls.io/r/backbone-boilerplate/backbone-boilerplate) [![Dependency Status](https://gemnasium.com/backbone-boilerplate/backbone-boilerplate.png)](https://gemnasium.com/backbone-boilerplate/backbone-boilerplate)
@@ -108,3 +109,9 @@ editting the commented regions of the karma configuration in `Gruntfile.js`.
 ## License ##
 Copyright © 2014 Tim Branyen (@tbranyen)  
 Licensed under the MIT license.
+=======
+civ-client
+==========
+
+Personal project with Metro-UI-CSS, backbone and requirejs
+>>>>>>> e5ad9d0c5a298a5c4d2a0cea4ddef2f5a0e1e055
