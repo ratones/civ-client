@@ -1,4 +1,4 @@
-define(['jquery','underscore','backbone','text!modules/main/templates/template.html','vm'],function($,_,Backbone,template,Vm){
+define(['jquery','underscore','backbone','text!modules/main/templates/template.html','vm','plugins'],function($,_,Backbone,template,Vm){
 	var AppView = Backbone.View.extend({
 		el:'#main',
 		initialize:function(){

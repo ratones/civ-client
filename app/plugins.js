@@ -147,3 +147,29 @@ $.fn.toJSON = function(param) {
     return JSON.stringify(param);
 };
 
+window.myConfirm=function(options){
+	var title=options?options.title||'Warning!':'Null';
+	var result;
+	var message=options?options.message||'This is an alert':'Alert';
+	 $.Dialog({
+		overlay: true,
+		shadow: true,
+		flat: true,
+		icon: '<i class="icon-warning" style="background:#e3c800;color:#FFFFFF"></i>',
+		title: title,
+		content: '',
+		onShow: function(_dialog){
+			var content = _dialog.children('.content');
+			var html='<p style="text-align:center">'+message+'</p>'
+						+'<div style="position:absolute;bottom:5px;text-align:right">'
+						+'<button class="danger" onclick="$.Dialog.close();"><i class="icon-checkmark"></i></button>&nbsp;'
+						+'<button class="primary" onclick="$.Dialog.close();"><i class="icon-cancel-2"></i></button>'
+						+'</div>';
+			content.html(html);
+		}
+	});
+	
+	return result;
+	
+};
+

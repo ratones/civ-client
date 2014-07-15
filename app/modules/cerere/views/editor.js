@@ -57,7 +57,7 @@ define([
 			});
            
             this.model.on('change',this.setVal);
-             this._modelBinder.bind(this.model,$('#cerereEditor'));//,Backbone.ModelBinder.createDefaultBindings($('#cerereEditor'), 'data-name'));
+             this._modelBinder.bind(this.model,$('#cerereEditor'),Backbone.ModelBinder.createDefaultBindings($('#cerereEditor'), 'data-name'));
              
         },
         dateconverter:function(dir, val, attName, model, boundEls){

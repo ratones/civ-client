@@ -11,7 +11,9 @@ body{
 }
 
 */
-
+html{
+	height: auto !important;
+}
 .pull-right{
 	float:right !important;
 }
@@ -60,14 +62,16 @@ label.details-left
 {
     font-weight: normal;
     margin-right: 5px;
-    float:left;
-    width: 150px;
+    display:inline-block;
 }
 
 .metro .window{
 	overflow: visible !important;
 }
 
+.row{
+	margin-top:3px !important;
+}
 
 .help-inline {
   display: inline-block;

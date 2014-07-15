@@ -16,31 +16,16 @@ define(['app',
 ,function(app,$,_,Backbone,Collection,Vehicule,comandaModel,pageTemplate,EditorView,UserSession,Vm,moment){
     var collection = new Collection();
     var CereriPage = Backbone.View.extend({
-       initialize:function(){
-           _.bindAll(this,'showDetails');
-       },
-       events:{
-           'click .btn-details':'showDetails',
-           'click #btnAddCerere':'addcomanda'
-       },
+ 
        render:function(){
           this.$el.html(pageTemplate);
-          var grid = new ClearExampleGrid();
+          var grid = new Grid();
        },
        
-       
-       showDetails:function(e){
-           var id=$(e.currentTarget).data('id');
-          window.location.hash='#detalii/'+id;
-          //Backbone.history.navigate('detalii/'+id);
-       }
-        
     });
         
-    var ClearExampleGrid =  bbGrid.View.extend({
-    events:{
-        'click #btnAddCerere':'addcomanda'
-    },
+    var Grid =  bbGrid.View.extend({
+	
     container: '#bbGrid',
     
     collection: new Collection([],{}),
@@ -64,10 +49,10 @@ define(['app',
    },
    actions:{
        commands:function(id,attributes){
-           return '<button title="Importa lista" class="warning" id="btnImportCerere" data-id="'+attributes.id+'"><i class="icon-folder"></i></button>&nbsp;'+
-                   '<button title="Edit" class="primary" id="btnEditCerere" data-id="'+attributes.id+'"><i class="icon-pencil"></i></button>&nbsp;'+
-                   '<button title="Sterge" class="danger" id="btnDeleteCerere" data-id="'+attributes.id+'"><i class="icon-remove"></i></button>&nbsp;'+
-                   '<button title="Trimite" class="info" id="btnSendCerere" data-id="'+attributes.id+'"><i class="icon-mail"></i></button>';
+           return '<button title="Importa lista" class="warning btnImportCerere" data-id="'+attributes.id+'"><i class="icon-folder"></i></button>&nbsp;'+
+                   '<button title="Edit" class="primary btnEditCerere" data-id="'+attributes.id+'"><i class="icon-pencil"></i></button>&nbsp;'+
+                   '<button title="Sterge" class="danger btnDeleteCerere" data-id="'+attributes.id+'"><i class="icon-remove"></i></button>&nbsp;'+
+                   '<button title="Trimite" class="info btnSendCerere" data-id="'+attributes.id+'"><i class="icon-mail"></i></button>';
        }
    },
     subgrid: true,
@@ -82,13 +67,13 @@ define(['app',
             enableSearch:true,
             loadDynamic:true,
             autofetch:true,
-            colModel: [ { title: 'VIN', name: 'vin',index:true },
-                        { title: 'WVTA',index:true, name: 'wvta'},
-                        { title: 'Numar Omologare', name: 'nr_registru'},
-                        { title: 'status', name: 'status', index:true },
+            colModel: [ { title: 'VIN', name: 'vin',index:true,searchable:true  },
+                        { title: 'WVTA',index:true, name: 'wvta',searchable:true },
+                        { title: 'Numar Omologare', name: 'nr_registru',index:true,searchable:true },
+                        { title: 'status', name: 'status', index:true,searchable:true  },
                         { actions:'commands'}],
             buttons: [{
-                         title: 'Adauga <i class="icon-plus-3"></i>',
+                         title: '<i class="icon-plus"></i>',
                          cls:'success',
                          onClick: function(){
                              window.location.hash='#newvehicul/'+rowid;
@@ -104,45 +89,61 @@ define(['app',
            },
            events:{
            	 'click .btn-delete':'deleteVehicul'
+           	 ,'click .btn-details':'editVehicul'
            },
            deleteVehicul:function(e){
+           		if(myConfirm({title:'Confirma stergere!',message:'Sigur stergeti aceasta inregistrare?'}))alert('da');
 	           var id=$(e.currentTarget).data('id');
 	           var mdl = this.collection.get(id);
-	           mdl.destroy();
-	         // window.location.hash='#detalii/'+id;
-	          //Backbone.history.navigate('detalii/'+id);
-	       },
-            collection: new Vehicule([],{fk:rowid})
-        });
-        return new subgrid();
-    },
-   onReady: function(){
-       _.bindAll(this,'addcomanda');
-        $('a', this.$el).removeAttr('href');
-        $('#btnAddCerere').on('click',this.addcomanda);
+	           //mdl.destroy();
+
+	       }
+	       ,editVehicul:function(e){
+	       		var id=$(e.currentTarget).data('id');
+	       		window.location.hash='#detalii/'+id;
+	       }
+            ,collection: new Vehicule([],{fk:rowid})
+	        });
+	        return new subgrid();
+   		}//end subgrid
+   		,onReady: function(){
+	       _.bindAll(this,'addcomanda','editcomanda');
+	        $('a', this.$el).removeAttr('href');
+	        $('#btnAddCerere').on('click',this.addcomanda);
+	        $('.btnEditCerere').on('click',this.editcomanda);
+	        
+	        $('#fileupload').fileupload({
+	                                url : 'http://localhost:52070/Files/UploadHandler.ashx',
+	                                maxFileSize : 5000000,
+	                                acceptFileTypes : /(\.|\/)(.xls)$/i,
+	                                // formData : [{
+	                                    // name : 'newsid',
+	                                    // value : news.id
+	                                // }]
+	                            });
+         }
         
-        $('#fileupload').fileupload({
-                                url : 'http://localhost:52070/Files/UploadHandler.ashx',
-                                maxFileSize : 5000000,
-                                acceptFileTypes : /(\.|\/)(.xls)$/i,
-                                // formData : [{
-                                    // name : 'newsid',
-                                    // value : news.id
-                                // }]
-                            });
-        } ,
-        
-         addcomanda:function(e){
+         ,addcomanda:function(e){
             var self = this;
             e.preventDefault();
             var newCerere = new comandaModel({ nume_beneficiar: UserSession.get("company"),EntityState:0,id_benef:2 });
             //self.collection.add(newCerere);
             var editor = Vm.create(this, 'EditorView', EditorView,{model:newCerere});
             editor.render();
-        },
+        }
+        
+        ,editcomanda:function(e){
+        	 var self = this;
+            e.preventDefault();
+            var cerere = self.collection.get($(e.currentTarget).data('id'));
+            //self.collection.add(newCerere);
+            var editor = Vm.create(this, 'EditorView', EditorView,{model:cerere});
+            editor.render();
+        }
         
         
-        upload:function(){}
+        
+        ,upload:function(){}
     });
     
 return  CereriPage;

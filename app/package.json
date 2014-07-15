@@ -10,7 +10,8 @@
     "min_width": 650,
     "min_height": 650,
     "toolbar": false,
-    "frame":false
+    "frame":false,
+    "kiosk":true
   },
   "chromium-args": "--ignore-certificate-errors"
 }
