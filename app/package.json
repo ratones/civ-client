@@ -1,0 +1,16 @@
+{
+  "name": "appciv",
+  "main": "../index.html",
+  "version": "0.0.1",
+  "single-instance": true,
+  "window": {
+    "title": "Aplicatie C.I.V.",
+    "width": 800,
+    "height": 600,
+    "min_width": 650,
+    "min_height": 650,
+    "toolbar": false,
+    "frame":false
+  },
+  "chromium-args": "--ignore-certificate-errors"
+}

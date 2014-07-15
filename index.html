@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <title>Aplicatie C.I.V.</title>
+
+  <!-- Application styles. -->
+  <!-- build:[href] /styles.min.css -->
+  <link rel="stylesheet" href="app/styles/index.css">
+  <!-- /build -->
+   <script type="text/javascript">
+          if (typeof(window.require) !== "undefined") {
+                window.requireNode = window.require;
+                window.gui = window.requireNode('nw.gui');
+               // window.require = undefined;
+            }  
+        </script>
+</head>
+
+<body class="metro">
+  <!-- Application container. -->
+  <main role="main" id="main"></main>
+
+  <!-- Application source. -->
+  <!-- build:[src] /source.min.js -->
+  <script data-main="app/main" src="vendor/bower/requirejs/require.js"></script>
+  <!-- /build -->
+</body>
+</html>

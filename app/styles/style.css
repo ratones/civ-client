@@ -1,0 +1,170 @@
+/* 
+    Document   : mytheme
+    Created on : 03.03.2014, 10:31:56
+    Author     : cristian_mar
+    Description:
+        Purpose of the stylesheet follows.
+*/
+/*
+body{
+    font-size: 18px;
+}
+
+*/
+
+.pull-right{
+	float:right !important;
+}
+.pull-left{
+	float:left !important;
+}
+.metro .table .table{background-color:#e7ede0;}
+h2.app-title{
+    font-size: 18px;
+    text-align:center;
+    color: #2e8bcc;
+    font-weight: bold;
+}
+
+.main-menu-container{
+    left: 0;
+    margin: 0;
+    position: fixed;
+    width: 100%;
+}
+
+/*.navbar-nav > li > a{
+    line-height: 0px !important;
+}
+
+.navbar {
+    min-height: 20px !important;
+}*/
+
+
+.metro .page{
+   margin-left: auto;
+    margin-right: auto;
+    margin-top: 60px;
+    width: 90%;
+}
+
+.disabled-menu a
+{
+    background-color:#d9d9d9 !important;
+    color:#aaa !important;
+}
+
+
+label.details-left
+{
+    font-weight: normal;
+    margin-right: 5px;
+    float:left;
+    width: 150px;
+}
+
+.metro .window{
+	overflow: visible !important;
+}
+
+
+.help-inline {
+  display: inline-block;
+  *display: inline;
+  padding-left: 5px;
+  vertical-align: middle;
+  *zoom: 1;
+  color:Red;
+}
+
+.big-editor {
+    max-width: 190px;
+}
+
+
+.has-error .select2-choice 
+{
+    border:1px solid;
+    border-color: #B94A48;
+    border-radius: 4px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+}
+.has-error .select2-choice:focus 
+{
+    border:1px solid;
+    border-radius: 4px;
+    border-color: #953B39;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 6px #D59392;
+}
+
+.fakelink
+{
+    cursor:pointer;
+}
+.select2-custom
+{
+    margin-top: -3px;
+    max-width: 130px;
+    min-width:120px;
+}
+
+.select2-custom-big
+{
+    margin-top: -3px;
+    width:100%;
+}
+
+label.modal-editor-label
+{
+    margin-top:10px;
+    min-width:250px;
+}
+
+
+.btn-circle {
+	outline:none;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 12px;
+  line-height: 1.42;
+  border:1px solid #2E8BCC;
+  border-radius: 15px;
+  background: transparent;
+  color:black;
+}
+
+.btn-circle-big {
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  padding: 6px 0;
+  line-height: 1.42;
+  border:1px solid #2E8BCC;
+  border-radius: 20px;
+  background: transparent;
+  color:black;
+}
+
+
+.btn{
+    -webkit-app-region: no-drag;
+}
+
+.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus{
+     -webkit-app-region: no-drag;
+}
+.navbar-inverse .navbar-nav > li > a {
+     -webkit-app-region: no-drag;
+}
+.navbar-inverse {
+    -webkit-user-select: none;
+  	-webkit-app-region: drag;
+}
+.navbar-inverse .navbar-nav > li > a:hover,
+.navbar-inverse .navbar-nav > li > a:focus {
+  /*color: #FFFFFF;*/
+}
+

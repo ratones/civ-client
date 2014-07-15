@@ -1,0 +1,33 @@
+{
+  "name": "casierie",
+  "dependencies": {
+    "html5-boilerplate": "~4.3.0",
+    "almond": "~0.2.9",
+    "lodash": "~2.4.1",
+    "bootstrap3-typeahead": "latest",
+    "bootstrap-window": "latest",
+    "bootstrap-spinedit": "latest",
+    "bootbox": "latest",
+    "bootstrap-datepicker": null,
+    "select2": "latest",
+    "backbone": "~1.1.1",
+    "datatables": "latest",
+    "backbone-associations": "latest",
+    "Backbone.ModelBinder": "latest",
+    "jquery": "~2.1.0",
+    "jquery-cookie": "latest",
+    "requirejs": "~2.1.10",
+    "requirejs-text": "latest",
+    "qunit": "~1.14.0",
+    "jasmine": "~2.0.0",
+    "mocha": "~1.17.1",
+    "chai": "~1.9.0",
+    "sinon": "~1.8.2",
+    "moment": "latest",
+    "jquery-file-upload": null,
+    "Metro-UI-CSS": "2.0.20"
+  },
+  "resolutions": {
+    "jquery": "~2.1.0"
+  }
+}

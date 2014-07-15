@@ -1,0 +1,10 @@
+﻿<script type="text/template" id="user-menu">
+    <div>
+       <% if(isAuthenticated){ %>
+             Utilizator autentificat: <%= name %> | <a id="logout" href="#">Inchide sesiunea</a>
+       <%}
+       else{ %>
+            <a href="#/login">Autentificare</a>
+       <%} %>
+    </div>
+</script>

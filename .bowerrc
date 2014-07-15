@@ -1,0 +1,5 @@
+{
+  "directory": "vendor/bower",
+  "proxy":"http://cristian_mar:Andreia@80.86.99.115:3128",
+  "https-proxy":"http://cristian_mar:Andreia@80.86.99.115:3128"
+}
