@@ -9,8 +9,8 @@ define([
   'text!modules/atribut/templates/freeTemplate.html',
   'text!modules/atribut/templates/dropTemplate.html',
   //'bootstrap',
-  //'bootstrap_spin',
-  'select2',
+  //'jqui',
+  'metro_spin',
   //'libs/bootstrap/select2_locale_ro',
   'modelbinder'
 ], function ($, _, Backbone, dateTehniceModel, dateTehniceCollection, textTemplate, freeTemplate, dropTemplate) {
@@ -19,7 +19,7 @@ define([
         tagName:'div',
         attributes:function(){
             return {
-                class:'form-group Atribute_'+this.model.get('innerID')+'__val'
+                class:'input-control text Atribute_'+this.model.get('innerID')+'__val'
             };
         },
         _modelBinder:undefined,

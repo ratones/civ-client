@@ -8,9 +8,11 @@
 @import "../../vendor/bower/select2/select2.css";
 @import "../../vendor/bower/select2/select2-bootstrap.css";
 /*@import "../../vendor/bower/bootstrap-datepicker/css/datepicker3.css";*/
-@import "../../vendor/local/bbgrid/bbgrid.css";
+@import "../../vendor/bower/bbGrid-metro/bbgrid.metro.css";
 /*@import "../../vendor/local/bootstrap-notify/css/bootstrap-notify.css";*/
-/*@import "../../vendor/bower/bootstrap-spinedit/css/bootstrap-spinedit.css";*/
+@import "../../vendor/bower/metro-spinedit/css/metro-spinedit.css";
 @import "../../vendor/bower/jquery-file-upload/css/jquery.fileupload.css";
+/*@import "../../vendor/local/jquery-ui.min.css";*/
+
 /*-- Application stylesheets. -----------------------------------------------*/
 @import "style.css";

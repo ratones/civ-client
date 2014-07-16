@@ -21,6 +21,18 @@ html{
 	float:left !important;
 }
 .metro .table .table{background-color:#e7ede0;}
+
+.metro .select2-choice{height:33px;}
+
+.atributes-left {
+    display: inline-block !important;
+    width: 150px;
+   }
+.optContainer {
+    border: 1px solid;
+    padding:5px;
+    margin-bottom: 3px;
+}
 h2.app-title{
     font-size: 18px;
     text-align:center;
@@ -87,14 +99,14 @@ label.details-left
 }
 
 
-.has-error .select2-choice 
+.error-state .select2-choice 
 {
     border:1px solid;
     border-color: #B94A48;
     border-radius: 4px;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
 }
-.has-error .select2-choice:focus 
+.error-state .select2-choice:focus 
 {
     border:1px solid;
     border-radius: 4px;

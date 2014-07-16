@@ -6,7 +6,7 @@
     "lodash": "~2.4.1",
     "bootstrap3-typeahead": "latest",
     "bootstrap-window": "latest",
-    "bootstrap-spinedit": "latest",
+    "metro-spinedit": "https://github.com/ratones/metro-spinedit.git",
     "bootbox": "latest",
     "bootstrap-datepicker": null,
     "select2": "latest",
@@ -25,7 +25,9 @@
     "sinon": "~1.8.2",
     "moment": "latest",
     "jquery-file-upload": null,
-    "Metro-UI-CSS": "2.0.20"
+    "Metro-UI-CSS": "2.0.20",
+    "backstack":"https://github.com/ratones/backstack.git",
+    "bbGrid-metro":"https://github.com/ratones/bbgrid-metroui.git"
   },
   "resolutions": {
     "jquery": "~2.1.0"

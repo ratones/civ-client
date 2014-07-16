@@ -1,5 +1,5 @@
 <!-- <script type="text/template" id="vehiculTemplate"> -->
-<div id="vehiculTemplate" class="grid">
+<div id="vehiculTemplate" class="grid" style="width:940px;margin:0 auto">
 <input type='hidden'  name="id" id="id" data-bind="value:id" /> 
 <input type="hidden" name="id_comanda" data-bind="value:id_comanda" />
 
@@ -7,52 +7,52 @@
     <div class="span6">
         <h4>Date principale</h4>
     <hr />        
-       	<div class="row vin">
+       	<div class="row">
 			<label class="details-left span2">VIN:</label>
-			<div class="input-control text span4 ">
+			<div class="input-control text span4 vin ">
 				<input type='text' name="vin" id="vin" maxlength="17" data-bind="value:vin" />
 			</div>
 		</div>
-       	<div class="row nr_registru">
+       	<div class="row ">
 			<label class="details-left span2">Nr. registru:</label>
-			<div class="input-control text span4 ">
+			<div class="input-control text span4 nr_registru">
 				<input type="text" name="nr_registru" id="nr_registru"  data-bind="value:nr_registru" />
 			</div>
 		</div>
         
-        <div class="row wvta">
+        <div class="row ">
             <label class="details-left span2">WVTA:</label>
-        	<div class="input-control text span4 ">
+        	<div class="input-control text span4 wvta">
             	<input type="text"  data-bind="value:wvta" name="wvta" id="wvta" disabled="true" /> 
         	</div>
         </div>
-        <div class="row extensie">
+        <div class="row ">
             <label class="details-left span2">Extensie WVTA:</label>
-            <div class="input-control text span1 ">
+            <div class="input-control text span2 extensie">
                <input type="text" name="extensie" id="extensie"  data-bind="extensie" />
             </div>
         </div>
-        <div class="row an_fabr">
+        <div class="row ">
             <label class="details-left span2">An fabricatie:</label>
-            <div class="input-control text span1 ">
+            <div class="input-control text span2 an_fabr">
                <input type="text" name="an_fabr" id="an_fabr" data-bind="value:an_fabr"  />
             </div>
         </div>
-        <div class="row culoare">
+        <div class="row ">
             <label class="details-left span2">Culoare:</label>
-            <div class="input-control text span4 ">
+            <div class="input-control text span4 culoare">
                <input type="text" name="culoare" id="culoare"  data-bind="value:culoare" />
              </div>
         </div>
-        <div class="row id_motor">
+        <div class="row ">
             <label class="details-left span2">Cod motor / P(kW):</label>
-            <div class="input-control text span4 ">
+            <div class="input-control text span4 id_motor">
                <input type="text" name="id_motor" id="id_motor" data-bind="value:id_motor" />
             </div>
         </div>
-        <div class="row serie_motor">
+        <div class="row ">
             <label class="details-left span2">Serie motor:</label>
-            <div class="input-control text span4 ">
+            <div class="input-control text span4 serie_motor">
                <input type="text" name="serie_motor" id="serie_motor"  data-bind="value:serie_motor" />
             </div>
         </div>
@@ -79,15 +79,15 @@
         <h4>Date tehnice</h4>
         <!--button class="btn btn-custom-edit" id="addDate"><i class="glyphicon glyphicon-plus"></i> Adauga</button-->
         <hr />
-        <div id="date_tehnice_container">
-            <div class="panel-group" id="accordion"></div>
+        <div id="date_tehnice_container" class="span6">
+            <div class="accordion span6"  id="date-accordion"></div>
         </div>
-            <hr>
-        <div id="anvelope_container">
-            <div class="panel-group" id="anvelope_accordion"></div>
-        </div>
+            <br><hr>
+        <div id="anvelope_container" class="span6" style="margin-top: 35px">
+            <div class="accordion span6"  id="anvelope-accordion"></div>
         </div>
     </div>
+</div><!--end vehicule container-->
 
 <div class="row">
     <div class="col-md-9" id="operation_container">

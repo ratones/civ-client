@@ -82,6 +82,7 @@ define([
 		events: {
             //'click a': 'highlightMenuItem',
              'click #closeapp':'exitapp',
+             'click #refreshapp':'refreshapp',
             'click #minapp':'minimize',
             'mouseup .btn':'blurbtn',
             'click #fullscreenapp':"fullscreen"
@@ -150,7 +151,11 @@ define([
         exitapp:function(){
             if(window.gui)
                 gui.App.quit();
-        }      
+        }
+        ,refreshapp:function(){
+        	if(window.gui)
+        		window.gui.Window.get().reload();
+        } 
 	});
 	return MenuView;
 });

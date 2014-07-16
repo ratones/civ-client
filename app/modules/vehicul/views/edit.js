@@ -156,7 +156,7 @@ define(['jquery', 'underscore', 'backbone',
         setcombos : function() {
             var self = this;
             $('#nr_registru').select2({
-                width : '220px',
+            	containerCssClass:'size4',
                 ajax : {// instead of writing the function to execute the request we use Select2's convenient helper
                     url : root + "vehicule/getNrOmologare",
                     dataType : 'json',
@@ -192,7 +192,7 @@ define(['jquery', 'underscore', 'backbone',
             });
 
             $('#extensie').select2({
-                width : '220px',
+            	containerCssClass:'span2',
                 ajax : {// instead of writing the function to execute the request we use Select2's convenient helper
                     url : root + "vehicule/getextensiinr",
                     dataType : 'json',
@@ -226,7 +226,7 @@ define(['jquery', 'underscore', 'backbone',
 
             $('.selectcolor').select2({
                 multiple : true,
-                width : '350px',
+                containerCssClass:'size4',
                 separator : '-',
                 maximumSelectionSize : 3,
                 ajax : {// instead of writing the function to execute the request we use Select2's convenient helper
@@ -260,7 +260,7 @@ define(['jquery', 'underscore', 'backbone',
             });
 
             $('#id_motor').select2({
-                width : '220px',
+               containerCssClass:'size4',
                 ajax : {// instead of writing the function to execute the request we use Select2's convenient helper
                     url : root + "vehicule/getMotoare",
                     dataType : 'json',
@@ -422,9 +422,17 @@ define(['jquery', 'underscore', 'backbone',
 	            var atrs = _.groupBy(self.model.get("Atribute").toJSON(),"grupa");
 	            $.each(atrs, function(i, grp) {
 	                ///append accordion element to dom
-	                var html = '<div class="panel panel-default">' + '<div class="panel-heading">' + '<h4 class="panel-title">' + '<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#' + i + '">' + i.charAt(0).toUpperCase() + i.slice(1) + '</a>' + '</h4>' + '</div>' + '<div id="' + i + '" class="panel-collapse collapse">' + '<div class="panel-body">' + '</div>' + '</div>' + '</div>';
-	                $('#date_tehnice_container').find('#accordion').append(html);
+	                var html =
+	                	 '<div class="accordion-frame" id="'+i+'">' 
+                			+ '<a class="heading"  href="#">'
+                				+ i.charAt(0).toUpperCase() + i.slice(1) 
+                			+ '</a>'
+                			+ '<div class="panel-body content"></div>'
+	                	+ '</div>' ;
+	                	
+	                $('#date_tehnice_container').find('#date-accordion').append(html);
 	            });
+	            $('#date_tehnice_container').find('#date-accordion').accordion();
             }
             //console.log(atrs);
             //create collection binder
@@ -446,8 +454,23 @@ define(['jquery', 'underscore', 'backbone',
         renderanvelope : function() {
             var self = this;
             if ($('#anvelope_container').find('#standard').length === 0) {
-                var html = '<div class="panel panel-default">' + '<div class="panel-heading">' + '<h4 class="panel-title">' + '<a class="accordion-toggle" data-toggle="collapse" data-parent="#anvelope_accordion" href="#standard">' + 'Anvelope echipare standard' + '</a>' + '</h4>' + '</div>' + '<div id="standard" class="panel-collapse collapse">' + '<div class="panel-body">' + '</div>' + '</div>' + '</div>' + '<div class="panel panel-default">' + '<div class="panel-heading">' + '<h4 class="panel-title">' + '<a class="accordion-toggle" data-toggle="collapse" data-parent="#anvelope_accordion" href="#optionale">' + 'Anvelope optionale' + '</a>' + '</h4>' + '</div>' + '<div id="optionale" class="panel-collapse collapse">' + '<div class="panel-body">' + '<div class="col-md-12">' + '<button class="btn btn-success btn-circle" id="btnAddAnvelopa"><i class="glyphicon glyphicon-plus"></i></button>' + '</div>' + '</div>' + '</div>' + '</div>';
-                $('#anvelope_container').find('#anvelope_accordion').append(html);
+                var html = 
+                	 '<div class="accordion-frame" id="standard">' 
+	                + '<a class="heading"  href="#">' 
+	                + 'Anvelope echipare standard' 
+	                + '</a>' 
+                 	+ '<div  class="panel-body content"></div>' 
+                + '</div>' 
+               + '<div class="accordion-frame" id="optionale">' 
+	                + '<a class="heading"  href="#">' 
+	                + 'Anvelope optionale' 
+	                + '</a>' 
+                 	+ '<div  class="panel-body content">'
+                 		
+                 	+ '</div>' 
+                + '</div>';
+                
+                $('#anvelope_container').find('#anvelope-accordion').append(html).accordion();
             }
             self.loadAnvList();
             var viewCreator = function(model) {

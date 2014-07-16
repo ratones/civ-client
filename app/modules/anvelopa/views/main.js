@@ -22,7 +22,7 @@ define([
         innerID:undefined,
         attributes:function(){
             return {
-                   class:'optContainer',
+                   class:'optContainer input-control',
             };
         },
         events: {
@@ -56,8 +56,10 @@ define([
             if(self.model.get('EntityState')!==2){
             	var template = _.template($(dropTemplate).html());
             	self.$el.html(template({listaAnvelopeFata:Globals.get('anvelopefata').toJSON(),
-            							listaAnvelopeSpate:Globals.get('anvelopespate').toJSON()}));
+            							listaAnvelopeSpate:Globals.get('anvelopespate').toJSON(),
+            							innerid:self.innerID}));
             }
+            
              
             $('#anvelope_container').find('#' + self.container).find('.panel-body').append(self.$el);
            
@@ -84,7 +86,6 @@ define([
                                 // });
                 anvf.select2({
                     minimumResultsForSearch:-1,
-                    width:'280px',
                     //data:Globals.get('anvelopefata').toJSON()
                 }).on("change",function(e){
                     if(e.removed){
@@ -95,7 +96,6 @@ define([
                 
                 anvs.select2({
                     minimumResultsForSearch:-1,
-                    width:'280px',
                     //data:Globals.get('anvelopespate').toJSON()
                 }).on("change",function(e){
                 	//anvs.select2({data:Globals.get('anvelopespate').toJSON()});
@@ -152,6 +152,9 @@ define([
                         Globals.get('anvelopespate').remove(Number(value)); 
                     }
                 });
+                if(self.model.get('echipare')===1){
+                	$('#anvelope_container').find('#' + self.container).find('.panel-body').append('<button class="success" id="btnAddAnvelopa"><i class="icon-plus"></i></button>');
+                }
                 //self.setselectsources();
                 // $.each(e.previousAttributes(),function(i,value){
                      // if(i==='id_roataf'){
