@@ -2,19 +2,20 @@
     <div class="">
 		<div class="input-control Anvelope_<%=innerid%>__id_roataf">
 			<label>Fata(Anvelopa/Janta):</label>
-			<select  name="id_roataf" data-name="id_roataf" class="anvelopef size4">
+			<select  name="id_roataf" id="rf<%=innerid%>" data-name="id_roataf" class="anvelopef size4">
 				<% _.each(listaAnvelopeFata, function (modelChoice) { %>
           			<option value="<%= modelChoice.id %>"><%= modelChoice.text %></option>
         		<% }); %>
 			</select>
+			<input type="hidden" id="rf<%=innerid%>" name="id_roataf" data-name="id_roataf" class="anvelopef size4"/>
 		</div>
 		<div class="input-control Anvelope_<%=innerid%>__id_roatas">
 			<label>Spate(Anvelopa/Janta):</label>
-			<select name="id_roatas" data-name="id_roatas" class="anvelopes size4">
+			<!-- <select name="id_roatas" data-name="id_roatas"  class="anvelopes size4">
 				<% _.each(listaAnvelopeSpate, function (modelChoice) { %>
           			<option value="<%= modelChoice.id %>"><%= modelChoice.text %></option>
         		<% }); %>
-			</select>
+			</select> -->
 		</div>
 		<div style="width: 100px; float: right; margin-top: -64px;">
 	    	<button class="danger btnDelAnvelopa" ><i class="icon-remove"></i></button>

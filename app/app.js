@@ -8,6 +8,8 @@ define(function(require, exports, module) {
   var Backbone = require("backbone");
   var BackStack=require('backstack');
   var Metro = require('bootstrap');
+  var Globals = require('globals');
+  var Events = require('events');
   //var sm = require('smartmenus');
   //var smbs = require('smartmenusbs');
   //var smkb = require('smartmenuskb');
@@ -42,4 +44,7 @@ define(function(require, exports, module) {
   app.navigator = new BackStack.StackNavigator({el: '.page',firstView:appView});
      //$('body').html(app.navigator.render().el);
     //app.navigator.pushView(appView);
+    
+ 	
+    
 });

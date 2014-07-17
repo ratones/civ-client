@@ -470,7 +470,7 @@ define(['jquery', 'underscore', 'backbone',
                  	+ '</div>' 
                 + '</div>';
                 
-                $('#anvelope_container').find('#anvelope-accordion').append(html).accordion();
+                $('#anvelope_container').find('#anvelope-accordion').append(html).accordion({closeAny:false});
             }
             self.loadAnvList();
             var viewCreator = function(model) {
@@ -484,6 +484,7 @@ define(['jquery', 'underscore', 'backbone',
             this._anvcollectionBinder = new Backbone.CollectionBinder(elManagerFactory);
             this._anvcollectionBinder.bind(self.model.get('Anvelope'), $('#anvelope_container'));
             self.anvInitialized=true;
+            this.listenTo(Events,'anvFata:changed',self.updateSourcesFata);
         },
 
         loadAnvList : function() {
@@ -506,15 +507,33 @@ define(['jquery', 'underscore', 'backbone',
                     //}
                     //if (!Globals.get('anvelopespate')) {
                     Globals.set('anvelopespate', n_anv_spate);
+                    //Globals.get('anvelopefata').on('add remove', self.updateSourcesFata);
+					//Globals.get('anvelopespate').on('remove', Events.trigger('surseAnvSpateremoved'));
                     //}
                 }
             });
+        },
+        
+         updateSourcesFata:function(obj){
+         	obj.view.render();
+        	console.log(Globals.get('anvelopefata'));
         },
 
         addanvoptional : function(e) {
             var self = this;
             e.preventDefault();
-            if (self.model.get('Anvelope').byEchipare(1).models.length < 4 && ((self.model.get('Anvelope').byEchipare(1).models.length === 0 && Globals.get('anvelopefata').length > 0) || self.model.get('Anvelope').byEchipare(1).models.length > 0 && Globals.get('anvelopefata').length > 0)) {
+            if (
+            	self.model.get('Anvelope').byEchipare(1).models.length < 4 // nu acceptam mai mult de 4....
+             && 
+	             (
+	             	(
+	             		self.model.get('Anvelope').byEchipare(1).models.length === 0 //nu avem anv optionale
+	              		&& Globals.get('anvelopefata').length > 0 // avem de unde alege
+	          		) 
+	              || self.model.get('Anvelope').byEchipare(1).models.length > 0 //avem optionale
+	              && Globals.get('anvelopefata').length > 0 // avem de unde alege
+	              )
+              ) {
                 var optAnv = new anvelopaModel({
                     EntityState : 0,
                     echip : 1

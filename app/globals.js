@@ -13,7 +13,9 @@ function ($, _, Backbone,Vm) {
             filter: "",
             currPage: "",
             callFuncOnRedirect:"",
-            apiurl:""
+            apiurl:"",
+            anvelopefata:{},
+            anvelopespate:{}
         },
         initialize: function () {
             
