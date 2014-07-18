@@ -11,7 +11,7 @@ define(['jquery'],
                     return id;
                 },
             getBaseUrl:function(){
-                return "http://localhost:52070/api/";
+                return "https://prog.rarom.ro:447/api/";
             },
             showNotification:function(options){
                var not= $.Notify({

@@ -36,7 +36,7 @@ define([
             //this.listenTo(Events,'surseAnvFataremoved',self.updateSourcesFata);
             //console.log(options);
             _.bindAll(this,'setvalAnvelopa');
-            //this.listenTo(Globals.get('anvelopefata'),'remove add',self.render);
+            this.listenTo(Globals.get('anvelopefata'),'change',self.render);
             this._modelBinder=new Backbone.ModelBinder();
            var echipare = self.model.get('echip');
            self.innerID = options.innerID;
@@ -101,16 +101,16 @@ define([
                                     // anvs.append($('<option>', { value: v.id })
                                         // .text(v.text));
                                 // });
-                // anvf.select2({
-                    // minimumResultsForSearch:-1,
-                    // //data:Globals.get('anvelopefata').toJSON()
-                // })
-                // .on("change",function(e){  
+                anvf.select2({
+                    minimumResultsForSearch:-1,
+                    data:Globals.get('anvelopefata').toJSON()
+                })
+                 .on("change",function(e){  
                 	// Events.trigger('anvFata:changed',{e:e,view:self});              	
                 	// //var f = $('[name="id_roataf"]').not('#'+e.target.id);
                 	// //var source=Globals.get('anvelopefata');
-                	// //if(e.added) Globals.get('anvelopefata').remove(e.added.id);
-					// //if(e.removed) Globals.get('anvelopefata').add(new n_anvelopa({id:e.removed.id,text:e.removed.text}));
+                	if(e.added) Globals.get('anvelopefata').get(e.added.id).set('disabled',true);
+					if(e.removed) Globals.get('anvelopefata').get(e.removed.id).set('disabled',false);
             			// // if(e.added)
             				// // Globals.get('anvelopefata').remove(e.added.id);
             			// // source=Globals.get('anvelopefata');
@@ -120,7 +120,7 @@ define([
                 	// // _.each(f,function(el){             		
                 		// // $(el).select2('destroy').select2({data:source.toJSON(),minimumResultsForSearch:-1});
                 	// // });
-                // });
+                 });
                 //Globals.get('anvelopefata').remove(self.model.get('id_roataf'));
                 // anvs.select2({
                     // minimumResultsForSearch:-1,

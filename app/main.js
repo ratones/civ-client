@@ -8,6 +8,14 @@ requirejs(["config"], function() {
     // Define your master router on the application namespace and trigger all
     // navigation from this instance.
     app.router = new Router();
+    if(window.requireNode){
+    	 var xhr2 = requireNode('xhr2');
+    	$.ajaxSettings.xhr = function() {
+				//var options = proxy? {proxy:proxy}:null;
+				return new xhr2();
+		};
+    }
+   
     $.ajaxSetup({
         statusCode: {
             401: function () {
