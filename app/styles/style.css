@@ -33,6 +33,20 @@ html{
     padding:5px;
     margin-bottom: 3px;
 }
+
+.topmenu{
+	height:0px;
+ 	position: absolute;
+    width: 100%;
+    z-index: 9999999;
+    opacity: 0.7;
+    background: #000000;
+    overflow: hidden;
+}
+.topmenu button{
+	
+}
+
 h2.app-title{
     font-size: 18px;
     text-align:center;

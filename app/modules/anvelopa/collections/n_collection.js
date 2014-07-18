@@ -12,6 +12,12 @@ define([
         },
         url: function () {
         }
+        ,active: function() {
+           var filtered = this.filter(function(anvelopa) {
+              return anvelopa.get("disabled") !== true;
+              });
+        	return new n_anvelopeCollection(filtered);
+  		}
 
     });
     return n_anvelopeCollection;

@@ -26,8 +26,14 @@ define([
            var filtered = this.filter(function(anvelopa) {
               return anvelopa.get("echip") === 1;
               });
-        return new anvelopeCollection(filtered);
-  }
+        	return new anvelopeCollection(filtered);
+  		}
+  		,undeleted: function() {
+           var filtered = this.filter(function(anvelopa) {
+              return anvelopa.get("EntityState") !== 2;
+              });
+        	return new anvelopeCollection(filtered);
+  		}
 
     });
     return anvelopeCollection;

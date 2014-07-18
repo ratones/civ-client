@@ -353,7 +353,16 @@ define(['jquery', 'underscore', 'backbone',
 
         reloadanvelope : function() {
             var self = this;
-            self.loadAnvList();
+            if(self.anvInitialized){
+            	 //reactivam sursele pentu combobox-uri, in caz ca vreuna a fost dezactivata
+	            Globals.get('anvelopefata').each(function(model){model.unset('disabled');});
+	            Globals.get('anvelopefata').trigger('update');
+	            Globals.get('anvelopespate').each(function(model){model.unset('disabled');});
+	            Globals.get('anvelopespate').trigger('update');
+            }
+           
+            //mergem la server si prelucram lista actuala de anvelope - marcam spre stergere anvelope optionale(nu se mai afiseaza)
+            //															- resetam anvelopa standard
             var params = {
                 nr_reg : this.model.get('nr_registru'),
                 ext : this.model.get('extensie'),
@@ -366,6 +375,7 @@ define(['jquery', 'underscore', 'backbone',
                 type : 'GET',
                 success : function(response) {
                     self.model.get('Anvelope').reset(response);
+                    self.loadAnvList();
                      if(!self.anvInitialized)
                             self.renderanvelope();  
                 },
@@ -468,7 +478,7 @@ define(['jquery', 'underscore', 'backbone',
 	                + 'Anvelope optionale' 
 	                + '</a>' 
                  	+ '<div  class="panel-body content">'
-                 		
+                 	+ '<button class="success" id="btnAddAnvelopa"><i class="icon-plus"></i></button>'	
                  	+ '</div>' 
                 + '</div>';
                 
@@ -483,8 +493,6 @@ define(['jquery', 'underscore', 'backbone',
         	var self = this;
             	var viewCreator = function(model) {
                 self.anvelopeIndex++;
-                var idf = model.get('id_roataf');
-                //Globals.get('anvelopefata').get(idf).unset('disabled');
                 return new AnvelopeView({
                     model : model,
                     innerID : self.anvelopeIndex - 1
@@ -494,13 +502,13 @@ define(['jquery', 'underscore', 'backbone',
 	            this._anvcollectionBinder = new Backbone.CollectionBinder(elManagerFactory);
 	            this._anvcollectionBinder.bind(self.model.get('Anvelope'), $('#anvelope_container'));
 	            self.anvInitialized=true;
-
+				this.listenTo(Events,'anvelopa:removed',self.removeanvoptional);
            },
 
         loadAnvList : function(callback) {
             var self = this;
-            self.listenTo(Events, 'anvelopaRemoved', self.removeanvoptional);
-            var source = {};
+            //self.listenTo(Events, 'anvelopaRemoved', self.removeanvoptional);
+            //var source = {};
             $.ajax({
                 url : root + 'vehicule/GetListaAvelope',
                 data : {
@@ -508,44 +516,46 @@ define(['jquery', 'underscore', 'backbone',
                     ext : self.model.get('extensie')
                 },
                 success : function(response) {
-                    source = response;
-                    var n_anv_fata = new n_anvelope(source.anvelopef);
-                    var n_anv_spate = new n_anvelope(source.anvelopes);
+                    //source = response;
+                    var n_anv_fata = new n_anvelope(response.anvelopef);
+                    var n_anv_spate = new n_anvelope(response.anvelopes);
                    
                     Globals.set('anvelopefata', n_anv_fata);
                     Globals.set('anvelopespate', n_anv_spate);
 
                     
                     //dezactivam optiunile existente, pentru a nu mai putea fi alese
-                    var existingf = _.pluck(self.model.get('Anvelope').toJSON(),'id_roataf');
+                    var existingf = _.pluck(self.model.get('Anvelope').undeleted().toJSON(),'id_roataf');
                     var availablef = _.pluck(n_anv_fata.toJSON(),'id');
                     var todisable = _.intersection(existingf,availablef);
                     for (id in todisable){
                     	Globals.get('anvelopefata').get(todisable[id]).set('disabled',true);
                     }
-                    callback();
+                    var existings = _.pluck(self.model.get('Anvelope').undeleted().toJSON(),'id_roatas');
+                    var availables = _.pluck(n_anv_spate.toJSON(),'id');
+                    var todisables = _.intersection(existings,availables);
+                    for (id in todisables){
+                    	Globals.get('anvelopespate').get(todisables[id]).set('disabled',true);
+                    }
+                    if(callback)callback();
                 }
             });
         },
         
-         updateSourcesFata:function(obj){
-         	obj.view.render();
-        	console.log(Globals.get('anvelopefata'));
-        },
 
         addanvoptional : function(e) {
             var self = this;
             e.preventDefault();
             if (
-            	self.model.get('Anvelope').byEchipare(1).models.length < 4 // nu acceptam mai mult de 4....
+            	self.model.get('Anvelope').undeleted().byEchipare(1).models.length < 4 // nu acceptam mai mult de 4....
              && 
 	             (
 	             	(
-	             		self.model.get('Anvelope').byEchipare(1).models.length === 0 //nu avem anv optionale
-	              		&& Globals.get('anvelopefata').length > 0 // avem de unde alege
+	             		self.model.get('Anvelope').undeleted().byEchipare(1).models.length === 0 //nu avem anv optionale
+	              		&& Globals.get('anvelopefata').active().length > 0 // avem de unde alege
 	          		) 
-	              || self.model.get('Anvelope').byEchipare(1).models.length > 0 //avem optionale
-	              && Globals.get('anvelopefata').length > 0 // avem de unde alege
+	              || self.model.get('Anvelope').undeleted().byEchipare(1).models.length > 0 //avem optionale
+	              && Globals.get('anvelopefata').active().length > 0 // avem de unde alege
 	              )
               ) {
                 var optAnv = new anvelopaModel({
@@ -558,16 +568,10 @@ define(['jquery', 'underscore', 'backbone',
         },
 
         removeanvoptional : function(e) {
-            Globals.get('anvelopefata').add(new n_anvelopa({
-                id : e.idanvf,
-                text : e.txtanvf
-            }));
-            Globals.get('anvelopespate').add(new n_anvelopa({
-                id : e.idanvs,
-                text : e.txtanvs
-            }));
-            //$('.vehicul_Anvelope_' + e.innerID + '__id_roataf').closest('.optContainer').remove();
-            //this.anvelopeIndex--;
+        	if(e.idanvf)
+            Globals.get('anvelopefata').get(e.idanvf).unset('disabled').trigger('update');
+            if(e.idanvs)
+            Globals.get('anvelopespate').get(e.idanvs).unset('disabled').trigger('update');
         },
 
         confirmresetdate : function() {

@@ -5,6 +5,7 @@ define(['jquery','underscore','backbone','text!modules/main/templates/template.h
 			
 		},
 		render:function(){
+			
 			this.$el.html(template);
 			 requirejs(['modules/menu/views/main'], function (Menu) {
                 var menu = Vm.create({}, 'Menu', Menu);
