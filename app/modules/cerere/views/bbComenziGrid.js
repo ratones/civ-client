@@ -49,10 +49,10 @@ define(['app',
    },
    actions:{
        commands:function(id,attributes){
-           return '<button title="Importa lista" class="warning btnImportCerere" data-id="'+attributes.id+'"><i class="icon-folder"></i></button>&nbsp;'+
-                   '<button title="Edit" class="primary btnEditCerere" data-id="'+attributes.id+'"><i class="icon-pencil"></i></button>&nbsp;'+
-                   '<button title="Sterge" class="danger btnDeleteCerere" data-id="'+attributes.id+'"><i class="icon-remove"></i></button>&nbsp;'+
-                   '<button title="Trimite" class="info btnSendCerere" data-id="'+attributes.id+'"><i class="icon-mail"></i></button>';
+           return '<button title="Importa lista" class="warning transparent btnImportCerere" data-id="'+attributes.id+'"><i class="icon-folder"></i></button>&nbsp;'+
+                   '<button title="Edit" class="primary transparent btnEditCerere" data-id="'+attributes.id+'"><i class="icon-pencil"></i></button>&nbsp;'+
+                   '<button title="Sterge" class="danger transparent btnDeleteCerere" data-id="'+attributes.id+'"><i class="icon-remove"></i></button>&nbsp;'+
+                   '<button title="Trimite" class="info transparent btnSendCerere" data-id="'+attributes.id+'"><i class="icon-mail"></i></button>';
        }
    },
     subgrid: true,
@@ -74,7 +74,7 @@ define(['app',
                         { actions:'commands'}],
             buttons: [{
                          title: '<i class="icon-plus"></i>',
-                         cls:'success',
+                         cls:'success transparent',
                          onClick: function(){
                              window.location.hash='#newvehicul/'+rowid;
                             //Backbone.history.navigate('#newvehicul');
@@ -82,8 +82,8 @@ define(['app',
                         }],
            actions:{
                 commands:function(id,attributes){
-                    return '<button class="btn-details primary " data-id="'+attributes.id+'" title="Vezi detalii"><i class="icon-pencil"></i></button>&nbsp;'+
-                    	   '<button class="btn-delete danger " data-id="'+attributes.id+'" title="Sterge"><i class="icon-remove"></i></button>';
+                    return '<button class="btn-details transparent primary " data-id="'+attributes.id+'" title="Vezi detalii"><i class="icon-pencil"></i></button>&nbsp;'+
+                    	   '<button class="btn-delete transparent danger " data-id="'+attributes.id+'" title="Sterge"><i class="icon-remove"></i></button>';
                 }
                 
            },

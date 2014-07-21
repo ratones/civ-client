@@ -74,7 +74,7 @@ define([
 		render:function(){
 			this.$el.html(template);
 			var overlayInterval;
-			$('#launchTop').on('mouseover',function(){
+			$('#launchTop').on('mouseenter',function(){
 				overlayInterval = setTimeout(showOverlay,500);
 			});
 			// $('#launchTop').on('mouseout',function(){
@@ -85,13 +85,20 @@ define([
 				 $('#topmenu').animate({height:'30px'},500,function(){
 				 	//clearTimeout(overlayInterval);
 				 	//$('.window-btns').animate({opacity:1},100);
-				 	$('.navigation-bar-content').on('mouseout',function(){
+				 	// $('.navigation-bar-content').on('mouseout',function(){
+				 		// setTimeout(function(){
+				 			// $('#topmenu').animate({height:'0px'},500);
+				 		// },500);
+					// });
+			 	});
+			};
+			$('.navigation-bar-content').on('mouseleave',function(){
+				clearTimeout(overlayInterval);
 				 		setTimeout(function(){
 				 			$('#topmenu').animate({height:'0px'},500);
 				 		},500);
 					});
-			 	});
-			};
+			var hideOverlay=null;
 			 //$('a[href="' + window.location.hash + '"]').parent().addClass('active');
 			 $.Metro.initDropdowns();
             var usermenu = new UserMenu();

@@ -15,6 +15,7 @@ define(function(require, exports, module) {
   //var smkb = require('smartmenuskb');
   //var Bootstrap = require('bootstrap');
   //var Nedb = require("nedb");
+  var mod = require('modules/module/loader');
   var Vm = require('vm');
   var AppView = require('modules/main/views/main');
   var db = {};
